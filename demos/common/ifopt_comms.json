@@ -8,7 +8,7 @@
             "precision": 1,
             "pricetick": 0.2,
             "volscale": 100,
-            "name": "500期权",
+            "name": "500鏈熸潈",
             "exchg": "CFFEX",
             "session": "SD0930",
             "holiday": "CHINA"
@@ -21,7 +21,7 @@
             "precision": 1,
             "pricetick": 0.2,
             "volscale": 200,
-            "name": "中证",
+            "name": "涓�璇�",
             "exchg": "CFFEX",
             "session": "SD0930",
             "holiday": "CHINA"
@@ -34,7 +34,7 @@
             "precision": 1,
             "pricetick": 0.2,
             "volscale": 300,
-            "name": "沪深",
+            "name": "娌�娣�",
             "exchg": "CFFEX",
             "session": "SD0930",
             "holiday": "CHINA"
@@ -47,7 +47,7 @@
             "precision": 1,
             "pricetick": 0.2,
             "volscale": 300,
-            "name": "上证",
+            "name": "涓婅瘉",
             "exchg": "CFFEX",
             "session": "SD0930",
             "holiday": "CHINA"
@@ -73,7 +73,7 @@
             "precision": 1,
             "pricetick": 0.2,
             "volscale": 100,
-            "name": "300期权",
+            "name": "300鏈熸潈",
             "exchg": "CFFEX",
             "session": "SD0930",
             "holiday": "CHINA"
@@ -86,7 +86,7 @@
             "precision": 1,
             "pricetick": 0.2,
             "volscale": 100,
-            "name": "1000期权",
+            "name": "1000鏈熸潈",
             "exchg": "CFFEX",
             "session": "SD0930",
             "holiday": "CHINA"
