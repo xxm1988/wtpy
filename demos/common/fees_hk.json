@@ -1,0 +1,126 @@
+{
+    "HK": {
+        "00700": {
+            "open": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            },
+            "close": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            },
+            "closetoday": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            }
+        },
+        "00941": {
+            "open": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            },
+            "close": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            },
+            "closetoday": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            }
+        },
+        "00388": {
+            "open": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            },
+            "close": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            },
+            "closetoday": {
+                "mode": 0,
+                "rate": 0.0008,
+                "fix": 0,
+                "min": 3
+            }
+        }
+    },
+    "US": {
+        "AAPL": {
+            "open": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            },
+            "close": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            },
+            "closetoday": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            }
+        },
+        "MSFT": {
+            "open": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            },
+            "close": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            },
+            "closetoday": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            }
+        },
+        "GOOGL": {
+            "open": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            },
+            "close": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            },
+            "closetoday": {
+                "mode": 1,
+                "rate": 0,
+                "fix": 0.005,
+                "min": 1
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+# 港股回测日志配置文件
+
+version: 1
+disable_existing_loggers: false
+
+formatters:
+    simple:
+        format: '[%(asctime)s - %(name)s - %(levelname)s] %(message)s'
+    
+    detail:
+        format: '[%(asctime)s - %(process)d - %(thread)d - %(name)s - %(levelname)s] %(message)s'
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: INFO
+        formatter: simple
+        stream: ext://sys.stdout
+        
+    file:
+        class: logging.handlers.RotatingFileHandler
+        level: DEBUG
+        formatter: detail
+        filename: ./logs/hk_backtest.log
+        maxBytes: 10485760  # 10MB
+        backupCount: 5
+        encoding: utf8
+        
+    strategy:
+        class: logging.handlers.RotatingFileHandler
+        level: DEBUG
+        formatter: detail
+        filename: ./logs/strategy.log
+        maxBytes: 10485760  # 10MB
+        backupCount: 5
+        encoding: utf8
+
+loggers:
+    # 策略日志
+    strategy:
+        level: DEBUG
+        handlers: [strategy, console]
+        propagate: false
+        
+    # 富途API日志
+    FutuParser:
+        level: INFO
+        handlers: [file, console]
+        propagate: false
+        
+    FutuDataLoader:
+        level: INFO
+        handlers: [file, console]
+        propagate: false
+        
+    # 回测引擎日志
+    WtBtEngine:
+        level: INFO
+        handlers: [file, console]
+        propagate: false
+
+root:
+    level: INFO
+    handlers: [console, file]

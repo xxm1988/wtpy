@@ -1,0 +1,83 @@
+# 港股实盘交易配置文件
+
+replayer:
+    basefiles:
+        commodity: ../common/hk_us_commodities.json   # 港美股品种列表
+        contract: ../common/hk_us_contracts.json      # 港美股合约列表
+        holiday: ../common/holidays.json              # 节假日列表
+        hot: ../common/hots.json                      # 主力合约映射表
+        session: ../common/hk_us_sessions.json        # 港美股交易时间模板
+        utf-8: false                                   # 基础文件编码
+        
+data:
+    store:
+        path: ../storage/       # 数据存储路径
+        
+trading:
+    # 交易时间设置
+    start: 0930            # 开始交易时间
+    end: 1600              # 结束交易时间
+    
+    # 风控设置
+    risk:
+        max_self_match: false      # 禁止自成交
+        max_cancel_ratio: 0.5      # 最大撤单比例
+        max_cancel_times: 10       # 最大撤单次数
+        
+    # 滑点设置
+    slippage:
+        HK.00700: 0.01            # 腾讯控股滑点
+        default: 0.01             # 默认滑点
+        
+strategy:
+    # 策略风控
+    max_position_ratio: 0.8       # 最大仓位比例
+    max_single_loss: 0.05         # 单笔最大亏损
+    daily_loss_limit: 0.1         # 日内亏损限制
+    
+futu:
+    # 富途API配置
+    host: 127.0.0.1
+    port: 11111
+    
+    # 交易配置
+    trade:
+        unlock_password: ""        # 交易密码（请在实际使用时填入）
+        is_simulate: true          # 是否模拟交易
+        market: HK                 # 交易市场
+        
+    # 行情配置
+    quote:
+        subscribe_level: 1         # 订阅档位
+        push_protocol: 1           # 推送协议
+        
+logging:
+    level: INFO
+    file: ./logs/live_trading.log
+    max_size: 10MB
+    backup_count: 5
+    
+monitor:
+    # 监控配置
+    enable: true
+    port: 8080
+    host: 0.0.0.0
+    
+    # 报警配置
+    alert:
+        email:
+            enable: false
+            smtp_server: ""
+            smtp_port: 587
+            username: ""
+            password: ""
+            to_emails: []
+            
+        wechat:
+            enable: false
+            webhook_url: ""
+            
+        dingtalk:
+            enable: false
+            webhook_url: ""
+            secret: ""

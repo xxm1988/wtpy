@@ -1,0 +1,61 @@
+# 港股回测配置文件
+# 支持腾讯控股等港股标的回测
+
+replayer:
+    basefiles:
+        commodity: d:/GitHub/wtpy/demos/common/hk_us_commodities.json   # 港美股品种列表
+        contract: d:/GitHub/wtpy/demos/common/hk_us_contracts.json      # 港美股合约列表
+        holiday: d:/GitHub/wtpy/demos/common/holidays.json              # 节假日列表
+        hot: d:/GitHub/wtpy/demos/common/hots.json                      # 主力合约映射表
+        session: d:/GitHub/wtpy/demos/common/hk_us_sessions.json        # 港美股交易时间模板
+        utf-8: false                                   # 基础文件是否是UTF8编码
+    mode: csv   # 回测历史数据存储模式
+    store:
+        module: WtDataStorage   # 历史数据存储模块
+        path: d:/GitHub/wtpy/demos/storage/       # 历史数据存储根目录
+    # 启用实时数据加载
+    realtime: true
+    # 使用外部数据加载器（富途）
+    extloader: true
+    etime: 202506211600         # 回测结束时间（港股收盘时间）
+    stime: 202406220930         # 回测开始时间（港股开盘时间）
+    fees: ../common/fees_hk.json   # 港股佣金配置文件
+    
+    # 富途数据源配置
+    futu:
+        host: 127.0.0.1         # 富途OpenD服务器地址
+        port: 11111             # 富途OpenD服务器端口
+        
+env:
+    mocker: cta                 # 回测引擎类型
+    slippage: 0                 # 滑点设置（港股通常较小）
+    capital: 1000000            # 初始资金100万港币
+    
+# 策略配置
+strategies:
+    dual_ma_tencent:
+        module: DualMAHK        # 策略模块名
+        class: DualMAHK         # 策略类名
+        params:
+            code: "HK.00700"    # 腾讯控股
+            ma_short: 10        # 短期均线
+            ma_long: 30         # 长期均线
+            max_pos: 1000       # 最大持仓
+            lot_size: 100       # 每手股数
+        fund: 1000000           # 初始资金100万
+        
+# 风控配置
+risk:
+    max_position_ratio: 0.8     # 最大仓位比例
+    max_single_loss: 0.05       # 单笔最大亏损比例
+    max_self_pos: 1.0          # 最大自成交比例
+    max_pos_qty: 10000         # 单品种最大持仓
+    
+# 输出配置
+outputs:
+    path: ./outputs_bt/dual_ma_tencent/  # 输出路径
+    
+# 日志配置
+loggers:
+    async: true
+    daily_loss_limit: 0.1       # 日内最大亏损限制

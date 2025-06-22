@@ -1,0 +1,114 @@
+# 港股实盘交易日志配置
+
+version: 1
+disable_existing_loggers: false
+
+formatters:
+    simple:
+        format: '[%(asctime)s - %(name)s - %(levelname)s] %(message)s'
+        datefmt: '%Y-%m-%d %H:%M:%S'
+    
+    detail:
+        format: '[%(asctime)s - %(process)d - %(thread)d - %(name)s - %(levelname)s] %(message)s'
+        datefmt: '%Y-%m-%d %H:%M:%S'
+        
+    trading:
+        format: '[%(asctime)s - TRADING - %(levelname)s] %(message)s'
+        datefmt: '%Y-%m-%d %H:%M:%S'
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: INFO
+        formatter: simple
+        stream: ext://sys.stdout
+        
+    file:
+        class: logging.handlers.RotatingFileHandler
+        level: DEBUG
+        formatter: detail
+        filename: ./logs/live_trading.log
+        maxBytes: 10485760  # 10MB
+        backupCount: 10
+        encoding: utf8
+        
+    strategy:
+        class: logging.handlers.RotatingFileHandler
+        level: DEBUG
+        formatter: detail
+        filename: ./logs/strategy.log
+        maxBytes: 10485760  # 10MB
+        backupCount: 10
+        encoding: utf8
+        
+    trading:
+        class: logging.handlers.RotatingFileHandler
+        level: INFO
+        formatter: trading
+        filename: ./logs/trading.log
+        maxBytes: 10485760  # 10MB
+        backupCount: 20
+        encoding: utf8
+        
+    error:
+        class: logging.handlers.RotatingFileHandler
+        level: ERROR
+        formatter: detail
+        filename: ./logs/error.log
+        maxBytes: 10485760  # 10MB
+        backupCount: 10
+        encoding: utf8
+        
+    futu:
+        class: logging.handlers.RotatingFileHandler
+        level: DEBUG
+        formatter: detail
+        filename: ./logs/futu_api.log
+        maxBytes: 10485760  # 10MB
+        backupCount: 5
+        encoding: utf8
+
+loggers:
+    # 策略日志
+    strategy:
+        level: DEBUG
+        handlers: [strategy, console]
+        propagate: false
+        
+    # 交易日志
+    trading:
+        level: INFO
+        handlers: [trading, console]
+        propagate: false
+        
+    # 富途API日志
+    FutuParser:
+        level: INFO
+        handlers: [futu, console]
+        propagate: false
+        
+    FutuExecuter:
+        level: INFO
+        handlers: [futu, trading, console]
+        propagate: false
+        
+    FutuDataLoader:
+        level: INFO
+        handlers: [futu, console]
+        propagate: false
+        
+    # 引擎日志
+    WtEngine:
+        level: INFO
+        handlers: [file, console]
+        propagate: false
+        
+    # 错误日志
+    error:
+        level: ERROR
+        handlers: [error, console]
+        propagate: false
+
+root:
+    level: INFO
+    handlers: [console, file]

@@ -1,0 +1,10 @@
+{
+    "marks": [
+        "pydt_okex"
+    ],
+    "channels": [],
+    "executers": [
+        "exec"
+    ],
+    "engine": "CTA"
+}

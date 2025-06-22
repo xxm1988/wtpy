@@ -1,0 +1,166 @@
+{
+    "HK": {
+        "00700": {
+            "name": "腾讯控股",
+            "exchg": "HK",
+            "session": "HK_TRADING",
+            "precision": 1,
+            "volscale": 1,
+            "pricetick": 0.1,
+            "minlots": 100,
+            "lotstick": 100
+        },
+        "00941": {
+            "name": "中国移动",
+            "exchg": "HK",
+            "session": "HK_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.05,
+            "minlots": 100,
+            "lotstick": 100
+        },
+        "00388": {
+            "name": "香港交易所",
+            "exchg": "HK",
+            "session": "HK_TRADING",
+            "precision": 1,
+            "volscale": 1,
+            "pricetick": 0.1,
+            "minlots": 100,
+            "lotstick": 100
+        },
+        "00005": {
+            "name": "汇丰控股",
+            "exchg": "HK",
+            "session": "HK_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 100,
+            "lotstick": 100
+        },
+        "01299": {
+            "name": "友邦保险",
+            "exchg": "HK",
+            "session": "HK_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.05,
+            "minlots": 100,
+            "lotstick": 100
+        },
+        "09988": {
+            "name": "阿里巴巴-SW",
+            "exchg": "HK",
+            "session": "HK_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.05,
+            "minlots": 100,
+            "lotstick": 100
+        },
+        "09618": {
+            "name": "京东集团-SW",
+            "exchg": "HK",
+            "session": "HK_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.05,
+            "minlots": 100,
+            "lotstick": 100
+        },
+        "03690": {
+            "name": "美团-W",
+            "exchg": "HK",
+            "session": "HK_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.05,
+            "minlots": 100,
+            "lotstick": 100
+        }
+    },
+    "US": {
+        "AAPL": {
+            "name": "苹果公司",
+            "exchg": "US",
+            "session": "US_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 1,
+            "lotstick": 1
+        },
+        "MSFT": {
+            "name": "微软公司",
+            "exchg": "US",
+            "session": "US_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 1,
+            "lotstick": 1
+        },
+        "GOOGL": {
+            "name": "谷歌A类股",
+            "exchg": "US",
+            "session": "US_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 1,
+            "lotstick": 1
+        },
+        "AMZN": {
+            "name": "亚马逊",
+            "exchg": "US",
+            "session": "US_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 1,
+            "lotstick": 1
+        },
+        "TSLA": {
+            "name": "特斯拉",
+            "exchg": "US",
+            "session": "US_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 1,
+            "lotstick": 1
+        },
+        "NVDA": {
+            "name": "英伟达",
+            "exchg": "US",
+            "session": "US_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 1,
+            "lotstick": 1
+        },
+        "META": {
+            "name": "Meta平台",
+            "exchg": "US",
+            "session": "US_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 1,
+            "lotstick": 1
+        },
+        "NFLX": {
+            "name": "奈飞",
+            "exchg": "US",
+            "session": "US_TRADING",
+            "precision": 2,
+            "volscale": 1,
+            "pricetick": 0.01,
+            "minlots": 1,
+            "lotstick": 1
+        }
+    }
+}

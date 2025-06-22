@@ -1,0 +1,46 @@
+{
+    "HK_TRADING": {
+        "name": "港股交易时段",
+        "offset": 480,
+        "sections": [
+            {
+                "from": 930,
+                "to": 1200
+            },
+            {
+                "from": 1300,
+                "to": 1600
+            }
+        ]
+    },
+    "US_TRADING": {
+        "name": "美股交易时段",
+        "offset": -300,
+        "sections": [
+            {
+                "from": 930,
+                "to": 1600
+            }
+        ]
+    },
+    "US_PREMARKET": {
+        "name": "美股盘前交易",
+        "offset": -300,
+        "sections": [
+            {
+                "from": 400,
+                "to": 930
+            }
+        ]
+    },
+    "US_AFTERMARKET": {
+        "name": "美股盘后交易",
+        "offset": -300,
+        "sections": [
+            {
+                "from": 1600,
+                "to": 2000
+            }
+        ]
+    }
+}
