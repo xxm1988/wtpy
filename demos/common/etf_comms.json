@@ -7,7 +7,7 @@
             "precision": 3,
             "pricetick": 0.001,
             "volscale": 10000,
-            "name": "上证ETF",
+            "name": "涓婅瘉ETF",
             "exchg": "SSE",
             "session": "SD0930",
             "holiday": "CHINA"
@@ -21,7 +21,7 @@
             "precision": 3,
             "pricetick": 0.001,
             "volscale": 10000,
-            "name": "深证ETF",
+            "name": "娣辫瘉ETF",
             "exchg": "SZSE",
             "session": "SD0930",
             "holiday": "CHINA"
