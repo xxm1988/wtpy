@@ -908,12 +908,25 @@ def strategy_analyze(workbook:Workbook, df_closes, df_trades,df_funds, capital, 
 
     new_data = pd.concat([data1_open, data1_close], axis=1)
     new_data = new_data.dropna()
-    new_data = new_data.drop(columns=['code_1', 'qty_1'])
+    # 只删除存在的列
+    columns_to_drop = [col for col in ['code_1', 'qty_1'] if col in new_data.columns]
+    if columns_to_drop:
+        new_data = new_data.drop(columns=columns_to_drop)
 
     # 计算开仓平仓手续费
-    new_data['transaction_fee'] = new_data['fee'] + new_data['fee_1']
-    clean_data = new_data[['time', 'transaction_fee']]
-    clean_data = clean_data.rename(columns={'time': 'opentime'})
+    if 'fee' in new_data.columns and 'fee_1' in new_data.columns:
+        new_data['transaction_fee'] = new_data['fee'] + new_data['fee_1']
+    else:
+        new_data['transaction_fee'] = 0
+    # 检查time列是否存在，如果不存在则使用其他时间列或创建默认值
+    if 'time' in new_data.columns:
+        clean_data = new_data[['time', 'transaction_fee']]
+        clean_data = clean_data.rename(columns={'time': 'opentime'})
+    elif 'opentime' in new_data.columns:
+        clean_data = new_data[['opentime', 'transaction_fee']]
+    else:
+        # 如果没有时间列，创建一个空的DataFrame
+        clean_data = pd.DataFrame(columns=['opentime', 'transaction_fee'])
 
     # 合并数据
     after_merge = pd.merge(df_closes, clean_data, how='inner', on='opentime')
@@ -1624,6 +1637,11 @@ class WtBtAnalyst:
             df_funds = pd.read_csv(os.path.join(folder,"funds.csv"))
             df_closes = pd.read_csv(os.path.join(folder, "closes.csv"))
             df_trades = pd.read_csv(os.path.join(folder, "trades.csv"))
+            
+            # 检查是否有交易数据
+            if df_closes.empty:
+                print(f"No trading data found for strategy {sname}, skipping analysis...")
+                continue
 
             if len(outFileName) == 0:
                 outFileName = 'Strategy[%s]_PnLAnalyzing_%s_%s.xlsx' % (sname, df_funds['date'][0], df_funds['date'].iloc[-1])
@@ -1707,6 +1725,11 @@ class WtBtAnalyst:
 
             df_funds = pd.read_csv(os.path.join(folder, "funds.csv"))
             df_closes = pd.read_csv(os.path.join(folder, "closes.csv"))
+            
+            # 检查是否有交易数据
+            if df_closes.empty:
+                print(f"No trading data found for strategy {sname}, skipping analysis...")
+                continue
 
             df_closes['fee'] = df_closes['profit'] - df_closes['totalprofit'] + df_closes['totalprofit'].shift(1).fillna(value=0)
             df_long = df_closes[df_closes['direct'].apply(lambda x: 'LONG' in x)]

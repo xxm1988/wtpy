@@ -14,6 +14,10 @@
     > - WtBtAnalyst.py	回测分析模块，主要是利用回测生成的数据，计算各项回测指标，并输出到`excel`文件
     > - WtCtaOptimizer  `CTA`优化器，主要是利用`multiprocessing`并行回测，并统计各项交易指标，最后将统计结果汇总输出到`csv`文件
 	> - WtHotPicker		国内期货换月规则辅助模块，支持从交易所网站页面爬取数据确定换月规则，也支持解析`datakit`每日收盘生成的snapshot.csv来确定换月规则
++ futu子模块
+	> 该模块主要包含了富途OpenAPI的扩展支持，用于港美股行情和交易功能
+	> - FutuParser.py	主要用于接入富途行情数据
+	> - FutuTrader.py	主要用于富途交易接口对接
 + wrapper子模块
 	> 该模块主要包含了所有和`C++`底层对接的接口模块
 	> - ContractLoader.py	主要用于通过`CTP`等接口加载基础的`commodities.json`和`contracts.json`文件
@@ -52,13 +56,74 @@
 	> -	WtEngine.py		交易引擎转换模块，主要封装底层接口调用
 
 
-# 如何让获取
+# 如何获取和安装
+
+## 获取地址
 * `WonderTrader`
 	> - `github`地址：<https://github.com/wondertrader/wondertrader>
 	> - `gitee`地址：<https://gitee.com/wondertrader/wondertrader>
 * `wtpy`
 	> - `github`地址：<https://github.com/wondertrader/wtpy>
 	> - `gitee`地址：<https://gitee.com/wondertrader/wtpy>
+
+## 获取和安装
+
+### 方式一：直接下载
+
+从[wtpy发布页面](https://github.com/wondertrader/wtpy/releases)下载对应的whl文件，解压以后直接安装
+
+```shell
+pip install wtpy-xxxx-py3-none-any.whl
+```
+
+### 方式二：从pypi安装
+
+```shell
+pip install wtpy
+```
+
+### 方式三：从源码编译
+
+```shell
+python setup.py bdist_wheel
+pip install dist/wtpy-xxxx-py3-none-any.whl
+```
+
+### 港美股支持安装
+
+如需使用港美股交易功能，请运行富途OpenAPI支持安装脚本：
+
+```shell
+python install_futu_support.py
+```
+
+该脚本将自动安装富途OpenAPI和相关依赖包。
+
+## 港美股交易演示
+
+### 回测演示
+
+腾讯控股DualThrust策略回测：
+
+```shell
+cd demos/cta_hk_bt
+python runBT.py
+```
+
+### 实盘交易演示
+
+港股实盘交易（需要富途账户和OpenD）：
+
+```shell
+cd demos/cta_hk_live
+python run.py
+```
+
+**注意**: 实盘交易前请确保：
+1. 已安装富途牛牛客户端
+2. 启动富途OpenD程序
+3. 配置正确的交易密码
+4. 具有相应的市场权限
 
 * `wtpy`获取地址：<https://pypi.org/project/wtpy/>
     `wtpy`可以直接在`python3.8`以上的版本安装

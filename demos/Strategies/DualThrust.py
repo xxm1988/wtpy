@@ -1,5 +1,5 @@
 from wtpy import BaseCtaStrategy
-from wtpy import CtaContext
+from wtpy import CtaContext, BaseCtaStrategy
 import numpy as np
 
 class StraDualThrust(BaseCtaStrategy):
