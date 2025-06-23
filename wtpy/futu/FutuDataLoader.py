@@ -3,6 +3,8 @@ import numpy as np
 from datetime import datetime, timedelta
 from typing import Optional, List, Dict
 from wtpy.ExtModuleDefs import BaseExtDataLoader
+from wtpy.WtCoreDefs import WTSBarStruct, WTSTickStruct
+from ctypes import POINTER
 import logging
 
 try:
@@ -228,7 +230,7 @@ class FutuDataLoader(BaseExtDataLoader):
             df['high'] = futu_data['high'].astype(float)
             df['low'] = futu_data['low'].astype(float)
             df['close'] = futu_data['close'].astype(float)
-            df['volume'] = futu_data['volume'].astype(int)
+            df['vol'] = futu_data['volume'].astype(int)
             
             # 成交额
             if 'turnover' in futu_data.columns:
@@ -413,8 +415,6 @@ class FutuDataLoader(BaseExtDataLoader):
             WTSBarStruct数组
         """
         try:
-            from wtpy.WtCoreDefs import WTSBarStruct
-            from ctypes import POINTER
             
             if df.empty:
                 return None
@@ -432,13 +432,7 @@ class FutuDataLoader(BaseExtDataLoader):
                 bar.high = float(row['high'])
                 bar.low = float(row['low'])
                 bar.close = float(row['close'])
-                bar.vol = float(row['volume'])
-                bar.money = float(row.get('turnover', 0.0))
-                bar.hold = float(row.get('interest', 0.0))
-                bar.settle = 0.0
-                bar.diff = 0.0
-                bar.reserve = 0
-                
+                bar.vol = float(row['vol'])     
             return buffer
             
         except Exception as e:
@@ -453,11 +447,50 @@ class FutuDataLoader(BaseExtDataLoader):
             df: Tick数据DataFrame
             
         Returns:
-            转换后的数据结构
+            WTSTickStruct数组
         """
-        # 这里需要根据wtpy的具体数据结构进行转换
-        # 暂时返回DataFrame，实际使用时可能需要进一步转换
-        return df.to_dict('records')
+        try:
+            if df.empty:
+                return None
+                
+            # 创建WTSTickStruct数组
+            BUFFER = WTSTickStruct * len(df)
+            buffer = BUFFER()
+            
+            # 填充数据
+            for i, row in df.iterrows():
+                tick = buffer[i]
+                
+                # 基本信息
+                tick.action_date = int(row['date'])
+                tick.action_time = int(row['time'])
+                tick.price = float(row['price'])
+                tick.total_volume = float(row['volume'])
+                
+                # 其他字段设置默认值
+                tick.open = 0.0
+                tick.high = 0.0
+                tick.low = 0.0
+                tick.settle = 0.0
+                tick.total_turnover = float(row.get('turnover', 0.0))
+                tick.open_interest = 0.0
+                tick.trading_date = int(row['date'])
+                tick.pre_close = 0.0
+                tick.pre_settle = 0.0
+                tick.pre_interest = 0.0
+                
+                # 买卖盘数据（富途实时数据可能没有完整的五档数据）
+                for x in range(5):
+                    tick.bid_prices[x] = 0.0
+                    tick.bid_qty[x] = 0.0
+                    tick.ask_prices[x] = 0.0
+                    tick.ask_qty[x] = 0.0
+                    
+            return buffer
+            
+        except Exception as e:
+            self.__logger__.error(f"转换WTSTickStruct时发生错误: {e}")
+            return None
         
     def close(self):
         """
